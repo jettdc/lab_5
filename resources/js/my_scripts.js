@@ -125,5 +125,20 @@ function loadStatsPage(){
 					  avg_r_yards   - the average number of rushing yards for the player's Buff career
 					  avg_rec_yards - the average number of receiving yards for the player's Buff career
 */
-				
-
+function loadPlayersPage(){
+	var playerDropdownLinks = [];
+	for(var i = 0; i < players.length; i++){
+		document.getElementById("player_selector").innerHTML += "<a class='dropdown-item' href='#' onClick='switchPlayers("+i+")'>"+players[i].name+"</a>";
+	}
+}
+function switchPlayers(id){
+	document.getElementById("p_year").innerHTML = players[id].year;
+	document.getElementById("p_major").innerHTML = players[id].major;
+	document.getElementById("g_played").innerHTML = players[id].games_played;
+	document.getElementById("p_yards").innerHTML = players[id].pass_yards;
+	document.getElementById("r_yards").innerHTML = players[id].rushing_yards;
+	document.getElementById("rec_yards").innerHTML = players[id].receiving_yards;
+	document.getElementById("avg_p_yards").innerHTML = (players[id].pass_yards / 12).toFixed(2);
+	document.getElementById("avg_r_yards").innerHTML = (players[id].rushing_yards / 12).toFixed(2);
+	document.getElementById("avg_rec_yards").innerHTML = (players[id].receiving_yards / 12).toFixed(2);
+}
