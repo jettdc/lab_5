@@ -66,7 +66,23 @@ function changeColor(color){
 						
 						4. Update the second table to show the total number of wins/losses for the Buffs.
 */
-
+function loadStatsPage(){
+	var t = document.getElementById("stats_table");
+	var numRows = t.rows.length;
+	var losses = 0;
+	for(var i = 2; i < numRows; i++){
+		if(parseInt(t.rows[i].cells.item(2).innerHTML) > parseInt(t.rows[i].cells.item(3).innerHTML)){
+			t.rows[i].cells[4].innerHTML = "CU";
+		}else{
+			t.rows[i].cells[4].innerHTML = t.rows[i].cells.item(1).innerHTML;
+			losses++;
+		}
+	}
+	var t = document.getElementsByTagName("table")[1];
+	var wins = (numRows - 2) - losses;
+	t.rows[1].cells[0].innerHTML=wins;
+	t.rows[1].cells[1].innerHTML=losses;
+}
 /*
 	Football Player Information Page
 		loadPlayersPage method:
